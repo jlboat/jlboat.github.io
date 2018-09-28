@@ -90,8 +90,7 @@
 </pre></div>
 
 
-<p>You'll want to add important channels. This essentially adds repositories. The order matters such that the later the channel is added the 
-higher the priority (it looks in conda-forge first). Do note, however, that while adding these channels will increase the number of identified packages, it will also increase the time it takes to look through all of those packages for updates/dependency resolution/etc.</p>
+<p>You'll want to add important channels. This essentially adds repositories. The order matters such that the later the channel is added the higher the priority (it looks in conda-forge first). Do note, however, that while adding these channels will increase the number of identified packages, it will also increase the time it takes to look through all of those packages for updates/dependency resolution/etc.</p>
 <div class="highlight"><pre><span></span>conda config --add channels defaults
 conda config --add channels bioconda
 conda config --add channels conda-forge
@@ -105,9 +104,8 @@ conda install gffutils    <span class="c1"># another python package</span>
 </pre></div>
 
 
-<p>Now, I don't recommend you install all of your packages to a single environment. For instance, I like to have one environment for python3, one 
-for python2, one for R, etc.</p>
-<p>As an example, let's create an R environment. Now, my by base environment is python3 (since it's my primary tool), but you may make R your primary and python a secondary.</p>
+<p>Now, I don't recommend you install all of your packages to a single environment. For instance, I like to have one environment for python3, one for python2, one for R, etc.</p>
+<p>As an example, let's create an R environment. Now, my by base environment is python3 (since it's my primary tool), but you may make R your primary and python a secondary. <em>Warning: Installing R in conda works great except if you already have R/R libraries installed the traditional way. It seems that the R libraries are the biggest issue and removing them allows the conda R to work properly.</em></p>
 <div class="highlight"><pre><span></span>conda create -n mro_env r-essentials mro-base
 </pre></div>
 
@@ -117,8 +115,7 @@ for python2, one for R, etc.</p>
 </pre></div>
 
 
-<p>On my Linux system, I had to add one line to by .bashrc file so I could activate my environments. You can try activating without adding this 
-line, and conda will tell you if you need it. Conda used to add a path export to your .bashrc, but that is no longer recommended.</p>
+<p>On my Linux system, I had to add one line to by .bashrc file so I could activate my environments. You can try activating without adding this line, and conda will tell you if you need it. Conda used to add a path export to your .bashrc, but that is no longer recommended.</p>
 <div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="s2">&quot;. /home/lboat/anaconda3/etc/profile.d/conda.sh&quot;</span> &gt;&gt; ~/.bashrc
 
 <span class="c1"># Now activate your new environment</span>
@@ -126,10 +123,8 @@ conda activate mro_env
 </pre></div>
 
 
-<p>This has changed the paths to all of the installed conda libraries such that you are now only looking at those programs/packages installed in 
-this environment. This is very helpful if there are package conflicts or if a program requires an older version that you don't typically use.</p>
-<p>From here, you can install any library you like (even ones you installed in a different environment). Since this is an example of my R 
-environment, I'm going to install some Bioconductor packages.</p>
+<p>This has changed the paths to all of the installed conda libraries such that you are now only looking at those programs/packages installed in this environment. This is very helpful if there are package conflicts or if a program requires an older version that you don't typically use.</p>
+<p>From here, you can install any library you like (even ones you installed in a different environment). Since this is an example of my R environment, I'm going to install some Bioconductor packages.</p>
 <div class="highlight"><pre><span></span><span class="c1"># Install Bioconductor -- if you set the channels above the channel parameter (-c) is optional</span>
 conda install -c bioconda bioconductor-biocinstaller
 </pre></div>
@@ -145,11 +140,16 @@ conda install -c bioconda bioconductor-edgeR
 <p>Now, in my case, the edgeR package had an outdated limma dependencies that prevented me from loading edgeR. This provides a great opportunity to describe an alternate way to install packages.</p>
 <p>Most people work with RStudio if they work in R. It can also be installed using conda.</p>
 <div class="highlight"><pre><span></span>conda install rstudio
+
+rstudio
 </pre></div>
 
 
 <p>Now, you can run RStudio and install any package you like as you normally would, but you should designate the library location specific to your conda installation.</p>
-<div class="highlight"><pre><span></span>biocLite<span class="p">(</span><span class="s">&quot;edgeR&quot;</span><span class="p">,</span> lib<span class="o">=</span><span class="s">&quot;~/anaconda3/envs/mro_env/lib/R/library&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="c1"># Whether that be from CRAN</span>
+install.packages<span class="p">(</span><span class="s">&quot;ggplot2&quot;</span><span class="p">)</span>
+<span class="c1"># Or Bioconductor</span>
+biocLite<span class="p">(</span><span class="s">&quot;edgeR&quot;</span><span class="p">,</span> lib<span class="o">=</span><span class="s">&quot;~/anaconda3/envs/mro_env/lib/R/library&quot;</span><span class="p">)</span>
 </pre></div>
 
 
