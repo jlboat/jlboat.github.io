@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Time and again I&#39;ve set up a new Linux environment (for various reasons) and I&#39;ve found that while there are innumerable ways to go about doing this, I have a few standard steps that I always...">
+        <meta name="keywords" content="bioinformatics, education">
+        <link rel="icon" href="./favicon.ico">
+
+        <title>How-to: Set up a Bioinformatics Environment - Computational approaches to biological problems</title>
+
+        <!-- Stylesheets -->
+        <link href="./theme/css/bootstrap.min.css" rel="stylesheet">
+        <link href="./theme/css/fonts.css" rel="stylesheet">
+        <link href="./theme/css/nest.css" rel="stylesheet">
+        <link href="./theme/css/pygment.css" rel="stylesheet">
+        <!-- /Stylesheets -->
+
+        <!-- RSS Feeds -->
+        <!-- /RSS Feeds -->
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+
+
+    </head>
+
+    <body>
+
+        <!-- Header -->
+    <div class="header-container gradient">
+
+            <!-- Static navbar -->
+            <div class="container">
+                <div class="header-nav">
+                    <div class="header-logo">
+                        <a class="pull-left" href="./"><img class="mr20" src="./images/logo.svg" alt="logo">Computational approaches to biological problems</a>
+                    </div>
+                    <div class="nav pull-right">
+                                <a href="./">Home</a>
+                                <a href="./about-me.html">About</a>
+                                <a href="https://github.com/jlboat">GitHub</a>
+                                <a href="https://scholar.google.com/citations?hl=en&user=q5G2bJEAAAAJ&view_op=list_works&gmla=AJsN-F4gfKvkjBIT6Nv8Xy97IIUHuhFi9jF8x5ntZveyPGo_xO2ws-_5NjCw-_9z9CD2mWJnlbL1DeMd-0l-IUNYPsQ1NR4wu8s_l6YjZYlsb9mTQ1d8TX8">Pubs</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /Static navbar -->
+
+            <!-- Header -->
+    <!-- Header -->
+    <div class="container header-wrapper">
+        <div class="row">
+              <div class="col-lg-12">
+                  <div class="header-content">
+                      <h1 class="header-title">How-to: Set up a Bioinformatics Environment</h1>
+                      <p class="header-date">By <a href="./author/j-lucas-boatwright.html">J. Lucas Boatwright</a>, Fri 28 September 2018, in category <a href="./category/how-to.html">How-to</a></p>
+                      <div class="header-underline"></div>
+                      <div class="clearfix"></div>
+                      <p class="pull-right header-tags">
+                          <span class="glyphicon glyphicon-tags mr5" aria-hidden="true"></span>
+<a href="./tag/bioinformatics.html">bioinformatics</a>, <a href="./tag/education.html">education</a>                      </p>
+                  </div>
+              </div>
+        </div>
+    </div>
+    <!-- /Header -->
+            <!-- /Header -->
+
+        </div>
+        <!-- /Header -->
+
+
+        <!-- Content -->
+    <div class="container content">
+        <p>Time and again I've set up a new Linux environment (for various reasons) and I've found that while there are innumerable ways to go about doing this, I have a few standard steps that I always follow. </p>
+<p>And the one program to rule them all is: <a href="https://conda.io/docs/user-guide/install/index.html">conda</a> !!</p>
+<p>While most probably associate conda with python package management, conda goes well beyond that and serves as a general environment/package manager for scientific libraries.</p>
+<p>As it says on conda's site:</p>
+<div class="highlight"><pre><span></span>A conda environment is a directory that contains a specific collection of conda packages that you have installed. For example, you may have one environment with NumPy 1.7 and its dependencies, and another environment with NumPy 1.6 for legacy testing. If you change one environment, your other environments are not affected. You can easily activate or deactivate environments, which is how you switch between them. You can also share your environment with someone by giving them a copy of your environment.yaml file.
+</pre></div>
+
+
+<p>First, download the <a href="https://conda.io/docs/user-guide/getting-started.html">Anaconda installer</a> for your system (or select <a href="https://conda.io/miniconda.html">Mini-conda</a> if you need a smaller install) and follow your system-specific directions. Here, I will walk through the Linux install and setup.</p>
+<div class="highlight"><pre><span></span>bash Anaconda-2.x.x-Linux-x86<span class="o">[</span>_64<span class="o">]</span>.sh
+</pre></div>
+
+
+<p>You'll want to add important channels. This essentially adds repositories. The order matters such that the later the channel is added the 
+higher the priority (it looks in conda-forge first). Do note, however, that while adding these channels will increase the number of identified packages, it will also increase the time it takes to look through all of those packages for updates/dependency resolution/etc.</p>
+<div class="highlight"><pre><span></span>conda config --add channels defaults
+conda config --add channels bioconda
+conda config --add channels conda-forge
+</pre></div>
+
+
+<p>From here, it's easy to install desired packages.</p>
+<div class="highlight"><pre><span></span>conda install samtools    <span class="c1"># Note: a C-based package</span>
+conda install pysam       <span class="c1"># a python package</span>
+conda install gffutils    <span class="c1"># another python package</span>
+</pre></div>
+
+
+<p>Now, I don't recommend you install all of your packages to a single environment. For instance, I like to have one environment for python3, one 
+for python2, one for R, etc.</p>
+<p>As an example, let's create an R environment. Now, my by base environment is python3 (since it's my primary tool), but you may make R your primary and python a secondary.</p>
+<div class="highlight"><pre><span></span>conda create -n mro_env r-essentials mro-base
+</pre></div>
+
+
+<p>You may want to check that you've properly set up the environment (or if you ever forget what you called it).</p>
+<div class="highlight"><pre><span></span>conda env list
+</pre></div>
+
+
+<p>On my Linux system, I had to add one line to by .bashrc file so I could activate my environments. You can try activating without adding this 
+line, and conda will tell you if you need it. Conda used to add a path export to your .bashrc, but that is no longer recommended.</p>
+<div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="s2">&quot;. /home/lboat/anaconda3/etc/profile.d/conda.sh&quot;</span> &gt;&gt; ~/.bashrc
+
+<span class="c1"># Now activate your new environment</span>
+conda activate mro_env
+</pre></div>
+
+
+<p>This has changed the paths to all of the installed conda libraries such that you are now only looking at those programs/packages installed in 
+this environment. This is very helpful if there are package conflicts or if a program requires an older version that you don't typically use.</p>
+<p>From here, you can install any library you like (even ones you installed in a different environment). Since this is an example of my R 
+environment, I'm going to install some Bioconductor packages.</p>
+<div class="highlight"><pre><span></span><span class="c1"># Install Bioconductor -- if you set the channels above the channel parameter (-c) is optional</span>
+conda install -c bioconda bioconductor-biocinstaller
+</pre></div>
+
+
+<p>Now, install the R packages you want:</p>
+<div class="highlight"><pre><span></span><span class="c1"># conda install -c bioconda bioconductor-{package_name}</span>
+conda install -c bioconda bioconductor-edgeR
+</pre></div>
+
+
+<p>As with other packages and programs, conda will identify dependencies and resolve versions to the best of its ability.</p>
+<p>Now, in my case, the edgeR package had an outdated limma dependencies that prevented me from loading edgeR. This provides a great opportunity to describe an alternate way to install packages.</p>
+<p>Most people work with RStudio if they work in R. It can also be installed using conda.</p>
+<div class="highlight"><pre><span></span>conda install rstudio
+</pre></div>
+
+
+<p>Now, you can run RStudio and install any package you like as you normally would, but you should designate the library location specific to your conda installation.</p>
+<div class="highlight"><pre><span></span>biocLite<span class="p">(</span><span class="s">&quot;edgeR&quot;</span><span class="p">,</span> lib<span class="o">=</span><span class="s">&quot;~/anaconda3/envs/mro_env/lib/R/library&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Your environment path may be different so be sure to check. As such, conda is capable of managing just about all of my major dependencies, from C-libraries to python and R. As an added benefit, this can all be done on a computer where you don't have sudo/admin access. So, if you work at a university where you have to request package installation, conda can save you a ton of headache.</p>
+
+
+        
+    </div>
+        <!-- /Content --> 
+
+        <!-- Footer -->
+        <div class="footer gradient-2">
+            <div class="container footer-container ">
+                <div class="row">
+                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                        <div class="footer-title"></div>
+                        <ul class="list-unstyled">
+                        </ul>
+                    </div>
+                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                    </div>
+                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                        <div class="footer-title"></div>
+                        <ul class="list-unstyled">
+                            <li><a href="about-me.html" target="_blank">about-me</a></li>
+                            <li><a href="https://github.com/jlboat" target="_blank">gitHub</a></li>
+                        </ul>
+                    </div> 
+                    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                        <p class="pull-right text-right">
+                            <small><em>Proudly powered by <a href="http://docs.getpelican.com/" target="_blank">pelican</a></em></small><br/>
+                            <small><em>Theme and code by <a href="https://github.com/molivier" target="_blank">molivier</a></em></small><br/>
+                            <small></small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Footer -->
+    </body>
+</html>
