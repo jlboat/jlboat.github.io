@@ -126,6 +126,8 @@ conda activate mro_env
 <p>This has changed the paths to all of the installed conda libraries such that you are now only looking at those programs/packages installed in this environment. This is very helpful if there are package conflicts or if a program requires an older version that you don't typically use.</p>
 <p>From here, you can install any library you like (even ones you installed in a different environment). Since this is an example of my R environment, I'm going to install some Bioconductor packages.</p>
 <div class="highlight"><pre><span></span><span class="c1"># Install Bioconductor -- if you set the channels above the channel parameter (-c) is optional</span>
+<span class="c1"># NOTE: installing bioconductor this way actually caused me some problems</span>
+<span class="c1">#       read further to see a better way to install packages</span>
 conda install -c bioconda bioconductor-biocinstaller
 </pre></div>
 
@@ -145,10 +147,11 @@ rstudio
 </pre></div>
 
 
-<p>Now, you can run RStudio and install any package you like as you normally would, but you should designate the library location specific to your conda installation.</p>
+<p>Now, you can run RStudio and install any package you like as you normally would (the library location specific to your conda installation should automatically be the default install location).</p>
 <div class="highlight"><pre><span></span><span class="c1"># Whether that be from CRAN</span>
 install.packages<span class="p">(</span><span class="s">&quot;ggplot2&quot;</span><span class="p">)</span>
 <span class="c1"># Or Bioconductor</span>
+<span class="c1"># lib path included as an example</span>
 biocLite<span class="p">(</span><span class="s">&quot;edgeR&quot;</span><span class="p">,</span> lib<span class="o">=</span><span class="s">&quot;~/anaconda3/envs/mro_env/lib/R/library&quot;</span><span class="p">)</span>
 </pre></div>
 
