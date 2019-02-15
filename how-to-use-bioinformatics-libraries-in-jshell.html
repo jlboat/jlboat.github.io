@@ -4,11 +4,11 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Computational approaches to biological problems, ">
+        <meta name="description" content="export CLASSPATH=&#34;/home/lboat/IdeaProjects/htsjdk/build/classes/java/main/&#34; jshell -c /home/lboat/IdeaProjects/htsjdk/build/classes/java/main/ import...">
         <meta name="keywords" content="">
         <link rel="icon" href="./favicon.ico">
 
-        <title>Computational approaches to biological problems - Computational approaches to biological problems</title>
+        <title>How-to: Use Bioinformatics Libraries in JShell - Computational approaches to biological problems</title>
 
         <!-- Stylesheets -->
         <link href="./theme/css/bootstrap.min.css" rel="stylesheet">
@@ -52,17 +52,23 @@
             <!-- /Static navbar -->
 
             <!-- Header -->
+    <!-- Header -->
     <div class="container header-wrapper">
         <div class="row">
               <div class="col-lg-12">
                   <div class="header-content">
-                      <h1 class="header-title">Bioinformatics How-tos</h1>
+                      <h1 class="header-title">How-to: Use Bioinformatics Libraries in JShell</h1>
+                      <p class="header-date">By <a href="./author/j-lucas-boatwright.html">J. Lucas Boatwright</a>, Tue 13 November 2018, in category <a href="./category/misc.html">Misc</a></p>
                       <div class="header-underline"></div>
-                      <p class="header-subtitle header-subtitle-homepage">and other biological inklings</p>
+                      <div class="clearfix"></div>
+                      <p class="pull-right header-tags">
+                          <span class="glyphicon glyphicon-tags mr5" aria-hidden="true"></span>
+                      </p>
                   </div>
               </div>
         </div>
     </div>
+    <!-- /Header -->
             <!-- /Header -->
 
         </div>
@@ -70,23 +76,45 @@
 
 
         <!-- Content -->
-    
-    <div class="archive-container">
-        <div class="container content archive">
-            <h2><a href="./index.html">Latest Posts </a></h2>
-            <dl class="dl-horizontal">
-                <dt>Tue 13 November 2018</dt>
-                <dd><a href="./how-to-use-bioinformatics-libraries-in-jshell.html">How-to: Use Bioinformatics Libraries in JShell</a></dd>
-                <dt>Fri 19 October 2018</dt>
-                <dd><a href="./how-to-containerize-an-application-with-singularity.html">How-to: Containerize an application with Singularity</a></dd>
-                <dt>Fri 28 September 2018</dt>
-                <dd><a href="./how-to-set-up-a-bioinformatics-environment.html">How-to: Set up a Bioinformatics Environment</a></dd>
-                <dt>Tue 28 August 2018</dt>
-                <dd><a href="./how-to-learn-bioinformatics.html">How-to: Learn Bioinformatics</a></dd>
-                <dt>Mon 27 August 2018</dt>
-                <dd><a href="./how-to-make-a-site-with-pelican.html">How-to: Make a Site with Pelican</a></dd>
-            </dl>
-        </div>
+    <div class="container content">
+        <p>export CLASSPATH="/home/lboat/IdeaProjects/htsjdk/build/classes/java/main/"
+jshell -c /home/lboat/IdeaProjects/htsjdk/build/classes/java/main/</p>
+<p>import htsjdk.samtools.reference.ReferenceSequenceFile
+import htsjdk.samtools.reference.ReferenceSequenceFileFactory
+import htsjdk.samtools.reference.FastaSequenceIndexCreator
+import htsjdk.samtools.reference.FastaSequenceIndex
+import java.nio.file.Paths
+import java.nio.file.Path</p>
+<h1>Get the path to our file</h1>
+<p>Path path = Paths.get("/home/lboat/Documents/practice/Java/big.fa")</p>
+<h1>Generate a FASTA object</h1>
+<p>ReferenceSequenceFile fasta = ReferenceSequenceFileFactory.getReferenceSequenceFile(path)</p>
+<h1>Index our FASTA file</h1>
+<p>FastaSequenceIndex fsi = FastaSequenceIndexCreator.buildFromFasta(path)</p>
+<h1>Determine the number of sequences in our file</h1>
+<p>fsi.size()</p>
+<h1>Get sequence-specific information</h1>
+<p>fsi.getIndexEntry("sequence_5")
+    contig sequence_5; location 5152; size 999; basesPerLine 60; bytesPerLine 61</p>
+<h1>Notice, our FASTA isn't recognized as indexed</h1>
+<p>fasta.isIndexed()
+    false</p>
+<h1>Write our index</h1>
+<p>fsi.write(Paths.get("/home/lboat/Documents/practice/Java/big.fa.fai"))</p>
+<h1>Re-open the FASTA using this index</h1>
+<p>fasta = ReferenceSequenceFileFactory.getReferenceSequenceFile(path)</p>
+<h1>Notice, our FASTA is now indexed</h1>
+<p>fasta.isIndexed()
+    true</p>
+<h1>You may want to check the first sequnce</h1>
+<p>ReferenceSequence rs = fasta.nextSequence()</p>
+<h1>Look at its name</h1>
+<p>rs.getName()</p>
+<h1>Look at the sequence</h1>
+<p>rs.getBaseString()</p>
+
+
+        
     </div>
         <!-- /Content --> 
 

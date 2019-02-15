@@ -149,14 +149,15 @@ rstudio
 
 <p>Now, you can run RStudio and install any package you like as you normally would (the library location specific to your conda installation should automatically be the default install location).</p>
 <div class="highlight"><pre><span></span><span class="c1"># Whether that be from CRAN</span>
-install.packages<span class="p">(</span><span class="s">&quot;ggplot2&quot;</span><span class="p">)</span>
+<span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;ggplot2&quot;</span><span class="p">)</span>
 <span class="c1"># Or Bioconductor</span>
 <span class="c1"># lib path included as an example</span>
-biocLite<span class="p">(</span><span class="s">&quot;edgeR&quot;</span><span class="p">,</span> lib<span class="o">=</span><span class="s">&quot;~/anaconda3/envs/mro_env/lib/R/library&quot;</span><span class="p">)</span>
+<span class="nf">biocLite</span><span class="p">(</span><span class="s">&quot;edgeR&quot;</span><span class="p">,</span> <span class="n">lib</span><span class="o">=</span><span class="s">&quot;~/anaconda3/envs/mro_env/lib/R/library&quot;</span><span class="p">)</span>
 </pre></div>
 
 
 <p>Your environment path may be different so be sure to check. As such, conda is capable of managing just about all of my major dependencies, from C-libraries to python and R. As an added benefit, this can all be done on a computer where you don't have sudo/admin access. So, if you work at a university where you have to request package installation, conda can save you a ton of headache.</p>
+<p>One last tip, you can also put your entire conda environment into a Singularity container and run it anywhere! See my post on <a href="./how-to_containerize_applications.html">Singularity containers</a>.</p>
 
 
         
