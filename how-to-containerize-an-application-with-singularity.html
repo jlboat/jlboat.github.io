@@ -127,44 +127,51 @@
     <span class="n">pip</span> <span class="n">install</span> <span class="n">multiqc</span>
 
 <span class="nf">%runscript</span>
-    <span class="n">exec</span> <span class="n">multiqc</span> <span class="s">&quot;$@&quot;</span><span class="err">```</span>
-
-<span class="n">How</span> <span class="n">to</span> <span class="n">containerize</span> <span class="n">a</span> <span class="n">GitHub</span> <span class="nl">application</span><span class="p">:</span>
+    <span class="n">exec</span> <span class="n">multiqc</span> <span class="s">&quot;$@&quot;</span>
 </pre></div>
 
 
-<p>Bootstrap: docker
-From: debian:latest</p>
-<p>%post
-    apt-get update --fix-missing &amp;&amp; apt-get install -y git make g++ libz-dev
-    git clone https://github.com/gpertea/stringtie
-    cd stringtie
-    make release</p>
-<p>%runscript
-    exec /stringtie/stringtie "$@"</p>
-<div class="highlight"><pre><span></span>How to containerize a miniconda environment (environment.yml can be from an existing environment or made from scratch):
+<p>How to containerize a GitHub application:</p>
+<div class="highlight"><pre><span></span><span class="nl">Bootstrap</span><span class="p">:</span> <span class="n">docker</span>
+<span class="nl">From</span><span class="p">:</span> <span class="nl">debian</span><span class="p">:</span><span class="n">latest</span>
+
+<span class="nf">%post</span>
+    <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span> <span class="o">--</span><span class="n">fix</span><span class="o">-</span><span class="n">missing</span> <span class="o">&amp;&amp;</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">git</span> <span class="n">make</span> <span class="n">g</span><span class="o">++</span> <span class="n">libz</span><span class="o">-</span><span class="n">dev</span>
+    <span class="n">git</span> <span class="n">clone</span> <span class="nl">https</span><span class="p">:</span><span class="c1">//github.com/gpertea/stringtie</span>
+    <span class="n">cd</span> <span class="n">stringtie</span>
+    <span class="n">make</span> <span class="n">release</span>
+
+<span class="nf">%runscript</span>
+    <span class="n">exec</span> <span class="o">/</span><span class="n">stringtie</span><span class="o">/</span><span class="n">stringtie</span> <span class="s">&quot;$@&quot;</span>
 </pre></div>
 
 
-<p>Bootstrap: docker
-From: continuumio/miniconda3</p>
-<p>%files
-    environment.yml</p>
-<p>%environment
-    PATH=/opt/conda/envs/$(head -1 environment.yml | cut -d' ' -f2)/bin:$PATH</p>
-<p>%post
-    echo ". /opt/conda/etc/profile.d/conda.sh" &gt;&gt; ~/.bashrc
-    echo "source activate $(head -1 environment.yml | cut -d' ' -f2)" &gt; ~/.bashrc
-    /opt/conda/bin/conda env create -f environment.yml</p>
-<p>%runscript
-    exec "$@"</p>
-<div class="highlight"><pre><span></span>The way I set up my containers, they&#39;re typically run similar to how the installed program should run. For example:
+<p>How to containerize a miniconda environment (environment.yml can be from an existing environment or made from scratch):</p>
+<div class="highlight"><pre><span></span><span class="nl">Bootstrap</span><span class="p">:</span> <span class="n">docker</span>
+<span class="nl">From</span><span class="p">:</span> <span class="n">continuumio</span><span class="o">/</span><span class="n">miniconda3</span>
+
+<span class="nf">%files</span>
+    <span class="n">environment</span><span class="p">.</span><span class="n">yml</span>
+
+<span class="nf">%environment</span>
+    <span class="n">PATH</span><span class="o">=/</span><span class="n">opt</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="err">$</span><span class="p">(</span><span class="n">head</span> <span class="o">-</span><span class="mi">1</span> <span class="n">environment</span><span class="p">.</span><span class="n">yml</span> <span class="o">|</span> <span class="n">cut</span> <span class="o">-</span><span class="n">d</span><span class="sc">&#39; &#39;</span> <span class="o">-</span><span class="n">f2</span><span class="p">)</span><span class="o">/</span><span class="nl">bin</span><span class="p">:</span><span class="n">$PATH</span>
+
+<span class="nf">%post</span>
+    <span class="n">echo</span> <span class="s">&quot;. /opt/conda/etc/profile.d/conda.sh&quot;</span> <span class="o">&gt;&gt;</span> <span class="o">~/</span><span class="p">.</span><span class="n">bashrc</span>
+    <span class="n">echo</span> <span class="s">&quot;source activate $(head -1 environment.yml | cut -d&#39; &#39; -f2)&quot;</span> <span class="o">&gt;</span> <span class="o">~/</span><span class="p">.</span><span class="n">bashrc</span>
+    <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">conda</span> <span class="n">env</span> <span class="n">create</span> <span class="o">-</span><span class="n">f</span> <span class="n">environment</span><span class="p">.</span><span class="n">yml</span>
+
+<span class="nf">%runscript</span>
+    <span class="n">exec</span> <span class="s">&quot;$@&quot;</span>
 </pre></div>
 
 
-<h1>Print the help information for FASTQC</h1>
-<p>singularity run fastqc.simg -h
-```</p>
+<p>The way I set up my containers, they're typically run similar to how the installed program should run. For example:</p>
+<div class="highlight"><pre><span></span># Print the help information for FASTQC
+singularity run fastqc.simg -h
+</pre></div>
+
+
 <p>One may also put executables on the PATH variable (as in my conda example above) or use the Singularity %apps option to have multiple subcommands (as in the bioscripts example under the SingularityRecipes repo on my GitHub page.</p>
 <p>One last recommendation, one program per container is much more modular for long-term maintenance. I hope this helps get you started with your own Singularity containers!</p>
 
