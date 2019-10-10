@@ -92,7 +92,7 @@
 <li>IID = Individual ID</li>
 </ul>
 <p>In this example, I don't have FIDs so the IID is just repeated for both.</p>
-<table>
+<table border="1" style="width:100%" align="center">
 <thead>
 <tr>
 <th>FID</th>
@@ -121,7 +121,7 @@
 </table>
 
 <p>This is slightly different from the Tassel tab-delimited format for phenotypes:</p>
-<table>
+<table border="1" style="width:100%" align="center">
 <thead>
 <tr>
 <th>&lt;Trait&gt;</th>
@@ -148,7 +148,7 @@
 
 <p>Tassel will allow you to save a phenotype file into either Tassel or Plink format.</p>
 <p>If you're running GAPIT, then the phenotype file is read into an R dataframe. That means that the delimiter used is less important since files can be read with "read.csv" or "read.table". However, you will generally want the file to looks like this:</p>
-<table>
+<table border="1" style="width:100%" align="center">
 <thead>
 <tr>
 <th>Taxa</th>
@@ -177,7 +177,7 @@
 <p>It's also worth noting that while the first 11 HapMap columns are required for GAPIT, only three of them are used ("rs" a.k.a. SNP name,  "chrom" and "pos"). So, the other eight columns may be filled with "NA".</p>
 <p>Now, let's assume instead that you want to run Plink or GEMMA. GEMMA can use Plink file formats, so let's use that common format. Conversion from VCF to Plink files is easily acheived using Tassel or vcftools. </p>
 <p>To begin, Plink requires both a PED (pedigree) and MAP (genetic map) file. Plink PED file format requires all markers be biallelic and the file look like so (header included here for clarity -- not in actual PED file):</p>
-<table>
+<table border="1" style="width:100%" align="center">
 <thead>
 <tr>
 <th>FamilyID</th>
@@ -218,7 +218,7 @@
 </table>
 
 <p>And the Plink MAP file looks like (again, header included for clarity only):</p>
-<table>
+<table border="1" style="width:100%" align="center">
 <thead>
 <tr>
 <th>chromosome</th>
