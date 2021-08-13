@@ -1,83 +1,77 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Among the many tools used for GWAS and Genomic Prediction, there seems to equally as many file formats to navigate. Running multiple different algorithms then requires switching between file...">
-        <meta name="keywords" content="">
-        <link rel="icon" href="./favicon.ico">
 
-        <title>How-to: Edit GWAS and Genomic Prediction File Formats - Computational approaches to biological problems</title>
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <!-- Stylesheets -->
-        <link href="./theme/css/bootstrap.min.css" rel="stylesheet">
-        <link href="./theme/css/fonts.css" rel="stylesheet">
-        <link href="./theme/css/nest.css" rel="stylesheet">
-        <link href="./theme/css/pygment.css" rel="stylesheet">
-        <!-- /Stylesheets -->
-
-        <!-- RSS Feeds -->
-        <!-- /RSS Feeds -->
-
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
+  <title>  How-to: Edit GWAS and Genomic Prediction File Formats | Computational Approaches to Biological Problems
+</title>
+  <link rel="canonical" href="./how-to-edit-gwas-and-genomic-prediction-file-formats.html">
 
 
+  <link rel="stylesheet" href="./theme/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./theme/css/fontawesome.min.css">
+  <link rel="stylesheet" href="./theme/css/pygments/default.min.css">
+  <link rel="stylesheet" href="./theme/css/theme.css">
 
-    </head>
+  
+  <meta name="description" content="Among the many tools used for GWAS and Genomic Prediction, there seems to equally as many file formats to navigate. Running multiple different algorithms then requires switching between file formats, which can be a tedious if not time-absorbing task. For both my future sanity as well as yours, I've provided …">
 
-    <body>
 
-        <!-- Header -->
-    <div class="header-container gradient">
+</head>
 
-            <!-- Static navbar -->
-            <div class="container">
-                <div class="header-nav">
-                    <div class="header-logo">
-                        <a class="pull-left" href="./"><img class="mr20" src="./images/boat-logo_small.jpeg" alt="logo">Computational approaches to biological problems</a>
-                    </div>
-                    <div class="nav pull-right">
-                                <a href="./">Home</a>
-                                <a href="./about-me.html">About</a>
-                                <a href="https://github.com/jlboat">GitHub</a>
-                                <a href="https://scholar.google.com/citations?hl=en&user=q5G2bJEAAAAJ&view_op=list_works&gmla=AJsN-F4gfKvkjBIT6Nv8Xy97IIUHuhFi9jF8x5ntZveyPGo_xO2ws-_5NjCw-_9z9CD2mWJnlbL1DeMd-0l-IUNYPsQ1NR4wu8s_l6YjZYlsb9mTQ1d8TX8">Pubs</a>
-                    </div>
-                </div>
-            </div>
-            <!-- /Static navbar -->
-
-            <!-- Header -->
-    <!-- Header -->
-    <div class="container header-wrapper">
-        <div class="row">
-              <div class="col-lg-12">
-                  <div class="header-content">
-                      <h1 class="header-title">How-to: Edit GWAS and Genomic Prediction File Formats</h1>
-                      <p class="header-date">By <a href="./author/j-lucas-boatwright.html">J. Lucas Boatwright</a>, Thu 10 October 2019, in category <a href="./category/misc.html">Misc</a></p>
-                      <div class="header-underline"></div>
-                      <div class="clearfix"></div>
-                      <p class="pull-right header-tags">
-                          <span class="glyphicon glyphicon-tags mr5" aria-hidden="true"></span>
-                      </p>
-                  </div>
-              </div>
-        </div>
+<body>
+  <header class="header">
+    <div class="container">
+<div class="row">
+    <div class="col-sm-4">
+      <a href="./">
+        <img class="img-fluid rounded" src=./images/LucasBoatwrightHeadShot-161x215.jpeg alt="Computational Approaches to Biological Problems">
+      </a>
     </div>
-    <!-- /Header -->
-            <!-- /Header -->
+  <div class="col-sm-8">
+    <h1 class="title"><a href="./">Computational Approaches to Biological Problems</a></h1>
+      <p class="text-muted">and other biological inklings</p>
+      <ul class="list-inline">
+          <li class="list-inline-item"><a href="./index.html">Home</a></li>
+          <li class="list-inline-item"><a href="./archives.html">posts</a></li>
+          <li class="list-inline-item"><a href="https://github.com/jlboat">GitHub</a></li>
+          <li class="list-inline-item"><a href="https://scholar.google.com/citations?hl=en&user=q5G2bJEAAAAJ&view_op=list_works&gmla=AJsN-F4gfKvkjBIT6Nv8Xy97IIUHuhFi9jF8x5ntZveyPGo_xO2ws-_5NjCw-_9z9CD2mWJnlbL1DeMd-0l-IUNYPsQ1NR4wu8s_l6YjZYlsb9mTQ1d8TX8">Pubs</a></li>
+              <li class="list-inline-item text-muted">|</li>
+            <li class="list-inline-item"><a href="./pages/about-me.html">About me</a></li>
+      </ul>
+  </div>
+</div>    </div>
+  </header>
 
-        </div>
-        <!-- /Header -->
-
-
-        <!-- Content -->
-    <div class="container content">
-        <p>Among the many tools used for GWAS and Genomic Prediction, there seems to equally as many file formats to navigate. Running multiple different algorithms then requires switching between file formats, which can be a tedious if not time-absorbing task. For both my future sanity as well as yours, I've provided a brief overview of some common formats and recommended routes for file conversion.</p>
+  <div class="main">
+    <div class="container">
+      <h1>  How-to: Edit GWAS and Genomic Prediction File Formats
+</h1>
+      <hr>
+  <article class="article">
+    <header>
+      <ul class="list-inline">
+        <li class="list-inline-item text-muted" title="2019-10-10T00:00:00-05:00">
+          <i class="fas fa-clock"></i>
+          Thu 10 October 2019
+        </li>
+        <li class="list-inline-item">
+          <i class="fas fa-folder-open"></i>
+          <a href="./category/how-to.html">How-to</a>
+        </li>
+          <li class="list-inline-item">
+            <i class="fas fa-user"></i>
+              <a href="./author/j-lucas-boatwright.html">J. Lucas Boatwright</a>          </li>
+          <li class="list-inline-item">
+            <i class="fas fa-tag"></i>
+              <a href="./tag/bioinformatics.html">#bioinformatics</a>,               <a href="./tag/education.html">#education</a>,               <a href="./tag/gwas.html">#gwas</a>,               <a href="./tag/gp.html">#gp</a>          </li>
+      </ul>
+    </header>
+    <div class="content">
+      <p>Among the many tools used for GWAS and Genomic Prediction, there seems to equally as many file formats to navigate. Running multiple different algorithms then requires switching between file formats, which can be a tedious if not time-absorbing task. For both my future sanity as well as yours, I've provided a brief overview of some common formats and recommended routes for file conversion.</p>
 <p>To start, I highly recommend that all genotype files be originally generated in VCF format. If you can do so following the GATK best practices for variant calling, all the better. The reason I recommend this is because VCF files are generally the most descriptive of all the genotype formats and conversion from VCF format to others results in a loss of informaton.</p>
 <p>Once you have a VCF file, genotype file conversion is relatively simple. You can use Tassel which provides options to convert among several genotype file formats:</p>
 <p>VCF | HapMap | HapMap Diploid | Plink | HDF5 | Phylip (interleaved or sequential) | Table</p>
@@ -249,7 +243,7 @@
 </tbody>
 </table>
 
-<div class="highlight"><pre><span></span><span class="c1"># This will generate the PED and MAP files -- note: Only biallelic loci will be output</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># This will generate the PED and MAP files -- note: Only biallelic loci will be output</span>
 <span class="c1"># Tassel can also generate the PED and MAP files, but Tassel retains multiallelic loci</span>
 <span class="c1">#     which is a problem for GEMMA</span>
 vcftools --vcf genotypes.vcf --plink --out genotypes 
@@ -257,61 +251,45 @@ vcftools --vcf genotypes.vcf --plink --out genotypes
 <span class="c1"># This will generate BED (binary PED), NoSex (if --allow-no-sex is included), </span>
 <span class="c1"># FAM (PLINK sample information file), BIM (PLINK extended MAP file)  and log files</span>
 plink --file genotypes --pheno phenotypes.txt --allow-no-sex --make-bed --out genotypes
-</pre></div>
-
+</code></pre></div>
 
 <p>The BED, BIM and FAM files are referred to as the Plink binary fileset. These are what you want to run GEMMA and Plink.</p>
 <p>The last style of genotype matrix typically seen is the numeric genotype matrix. Depending on the software, you may want this matrix in 0, 1, 2 format or in -1, 0, 1. This matrix format is useful in genomic prediction as a design matrix or during the calculation of a genomic relationship matrix.</p>
 <p>Conversion to 012 is easily accomplished using vcftools.</p>
-<div class="highlight"><pre><span></span>vcftools --vcf my.vcf --012 --out geno_matrix
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>vcftools --vcf my.vcf --012 --out geno_matrix
+</code></pre></div>
 
 <p>Then, conversion to a -101 format simply requires that the matrix be read into either R or python and one be subtracted from the matrix. For example:</p>
-<div class="highlight"><pre><span></span><span class="c1"># Commented code for a small-scale example</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Commented code for a small-scale example</span>
 <span class="c1"># myMatrix &lt;- matrix(c(c(0,1,2),c(2,1,0),c(1,2,0)), nrow=3)</span>
 
 <span class="n">myMatrix</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;geno_matrix.012&quot;</span><span class="p">,</span> <span class="n">head</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span>
 <span class="n">myMatrix</span> <span class="o">&lt;-</span> <span class="n">myMatrix</span> <span class="o">-</span> <span class="m">1</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Do note, however, that different programs require missing data in particular formats. Here, the 012 matrix has missing as -1 and the -101 has -2. So, change for NAs as necessary.</p>
 <p>That should cover the majority of file conversions needed for performing GWAS or Genomic Prediction. Good luck!</p>
-
-
-        
     </div>
-        <!-- /Content --> 
+  </article>
+    </div>
+  </div>
 
-        <!-- Footer -->
-        <div class="footer gradient-2">
-            <div class="container footer-container ">
-                <div class="row">
-                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
-                        <div class="footer-title"></div>
-                        <ul class="list-unstyled">
-                        </ul>
-                    </div>
-                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
-                    </div>
-                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
-                        <div class="footer-title"></div>
-                        <ul class="list-unstyled">
-                            <li><a href="about-me.html" target="_blank">about-me</a></li>
-                            <li><a href="https://github.com/jlboat" target="_blank">gitHub</a></li>
-                        </ul>
-                    </div> 
-                    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                        <p class="pull-right text-right">
-                            <small><em>Proudly powered by <a href="http://docs.getpelican.com/" target="_blank">pelican</a></em></small><br/>
-                            <small><em>Theme and code by <a href="https://github.com/molivier" target="_blank">molivier</a></em></small><br/>
-                            <small></small>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /Footer -->
-    </body>
+  <footer class="footer">
+    <div class="container">
+<div class="row">
+  <ul class="col-sm-6 list-inline">
+      <li class="list-inline-item"><a href="./authors.html">Authors</a></li>
+    <li class="list-inline-item"><a href="./archives.html">Archives</a></li>
+    <li class="list-inline-item"><a href="./categories.html">Categories</a></li>
+      <li class="list-inline-item"><a href="./tags.html">Tags</a></li>
+  </ul>
+  <p class="col-sm-6 text-sm-right text-muted">
+    Generated by <a href="https://github.com/getpelican/pelican" target="_blank">Pelican</a>
+    / <a href="https://github.com/nairobilug/pelican-alchemy" target="_blank">&#x2728;</a>
+  </p>
+</div>    </div>
+  </footer>
+
+</body>
+
 </html>

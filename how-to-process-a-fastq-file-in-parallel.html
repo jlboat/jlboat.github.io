@@ -1,202 +1,178 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="In this post, I will be demonstrating how to read FASTQ files using the htsjdk java library and then process those files using functions that allow for parallel processing. I&#39;ll be using JShell as...">
-        <meta name="keywords" content="">
-        <link rel="icon" href="./favicon.ico">
 
-        <title>How-to: Process a FASTQ file in parallel - Computational approaches to biological problems</title>
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <!-- Stylesheets -->
-        <link href="./theme/css/bootstrap.min.css" rel="stylesheet">
-        <link href="./theme/css/fonts.css" rel="stylesheet">
-        <link href="./theme/css/nest.css" rel="stylesheet">
-        <link href="./theme/css/pygment.css" rel="stylesheet">
-        <!-- /Stylesheets -->
-
-        <!-- RSS Feeds -->
-        <!-- /RSS Feeds -->
-
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
+  <title>  How-to: Process a FASTQ file in parallel | Computational Approaches to Biological Problems
+</title>
+  <link rel="canonical" href="./how-to-process-a-fastq-file-in-parallel.html">
 
 
+  <link rel="stylesheet" href="./theme/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./theme/css/fontawesome.min.css">
+  <link rel="stylesheet" href="./theme/css/pygments/default.min.css">
+  <link rel="stylesheet" href="./theme/css/theme.css">
 
-    </head>
+  
+  <meta name="description" content="In this post, I will be demonstrating how to read FASTQ files using the htsjdk java library and then process those files using functions that allow for parallel processing. I'll be using JShell as described in a previous post, and to begin, we'll designate the class path to the HTSJDK …">
 
-    <body>
 
-        <!-- Header -->
-    <div class="header-container gradient">
+</head>
 
-            <!-- Static navbar -->
-            <div class="container">
-                <div class="header-nav">
-                    <div class="header-logo">
-                        <a class="pull-left" href="./"><img class="mr20" src="./images/boat-logo_small.jpeg" alt="logo">Computational approaches to biological problems</a>
-                    </div>
-                    <div class="nav pull-right">
-                                <a href="./">Home</a>
-                                <a href="./about-me.html">About</a>
-                                <a href="https://github.com/jlboat">GitHub</a>
-                                <a href="https://scholar.google.com/citations?hl=en&user=q5G2bJEAAAAJ&view_op=list_works&gmla=AJsN-F4gfKvkjBIT6Nv8Xy97IIUHuhFi9jF8x5ntZveyPGo_xO2ws-_5NjCw-_9z9CD2mWJnlbL1DeMd-0l-IUNYPsQ1NR4wu8s_l6YjZYlsb9mTQ1d8TX8">Pubs</a>
-                    </div>
-                </div>
-            </div>
-            <!-- /Static navbar -->
-
-            <!-- Header -->
-    <!-- Header -->
-    <div class="container header-wrapper">
-        <div class="row">
-              <div class="col-lg-12">
-                  <div class="header-content">
-                      <h1 class="header-title">How-to: Process a FASTQ file in parallel</h1>
-                      <p class="header-date">By <a href="./author/j-lucas-boatwright.html">J. Lucas Boatwright</a>, Tue 13 November 2018, in category <a href="./category/misc.html">Misc</a></p>
-                      <div class="header-underline"></div>
-                      <div class="clearfix"></div>
-                      <p class="pull-right header-tags">
-                          <span class="glyphicon glyphicon-tags mr5" aria-hidden="true"></span>
-                      </p>
-                  </div>
-              </div>
-        </div>
+<body>
+  <header class="header">
+    <div class="container">
+<div class="row">
+    <div class="col-sm-4">
+      <a href="./">
+        <img class="img-fluid rounded" src=./images/LucasBoatwrightHeadShot-161x215.jpeg alt="Computational Approaches to Biological Problems">
+      </a>
     </div>
-    <!-- /Header -->
-            <!-- /Header -->
+  <div class="col-sm-8">
+    <h1 class="title"><a href="./">Computational Approaches to Biological Problems</a></h1>
+      <p class="text-muted">and other biological inklings</p>
+      <ul class="list-inline">
+          <li class="list-inline-item"><a href="./index.html">Home</a></li>
+          <li class="list-inline-item"><a href="./archives.html">posts</a></li>
+          <li class="list-inline-item"><a href="https://github.com/jlboat">GitHub</a></li>
+          <li class="list-inline-item"><a href="https://scholar.google.com/citations?hl=en&user=q5G2bJEAAAAJ&view_op=list_works&gmla=AJsN-F4gfKvkjBIT6Nv8Xy97IIUHuhFi9jF8x5ntZveyPGo_xO2ws-_5NjCw-_9z9CD2mWJnlbL1DeMd-0l-IUNYPsQ1NR4wu8s_l6YjZYlsb9mTQ1d8TX8">Pubs</a></li>
+              <li class="list-inline-item text-muted">|</li>
+            <li class="list-inline-item"><a href="./pages/about-me.html">About me</a></li>
+      </ul>
+  </div>
+</div>    </div>
+  </header>
 
-        </div>
-        <!-- /Header -->
-
-
-        <!-- Content -->
-    <div class="container content">
-        <p>In this post, I will be demonstrating how to read FASTQ files using the htsjdk java library and then process those files using functions that allow for parallel processing.</p>
+  <div class="main">
+    <div class="container">
+      <h1>  How-to: Process a FASTQ file in parallel
+</h1>
+      <hr>
+  <article class="article">
+    <header>
+      <ul class="list-inline">
+        <li class="list-inline-item text-muted" title="2018-11-13T00:00:00-05:00">
+          <i class="fas fa-clock"></i>
+          Tue 13 November 2018
+        </li>
+        <li class="list-inline-item">
+          <i class="fas fa-folder-open"></i>
+          <a href="./category/how-to.html">How-to</a>
+        </li>
+          <li class="list-inline-item">
+            <i class="fas fa-user"></i>
+              <a href="./author/j-lucas-boatwright.html">J. Lucas Boatwright</a>          </li>
+          <li class="list-inline-item">
+            <i class="fas fa-tag"></i>
+              <a href="./tag/bioinformatics.html">#bioinformatics</a>,               <a href="./tag/education.html">#education</a>,               <a href="./tag/java.html">#java</a>          </li>
+      </ul>
+    </header>
+    <div class="content">
+      <p>In this post, I will be demonstrating how to read FASTQ files using the htsjdk java library and then process those files using functions that allow for parallel processing.</p>
 <p>I'll be using JShell as described in a previous post, and to begin, we'll designate the class path to the HTSJDK library.</p>
-<div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">CLASSPATH</span><span class="o">=</span><span class="s2">&quot;/home/lboat/IdeaProjects/htsjdk/build/classes/java/main/&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">CLASSPATH</span><span class="o">=</span><span class="s2">&quot;/home/lboat/IdeaProjects/htsjdk/build/classes/java/main/&quot;</span>
 jshell 
-</pre></div>
-
+</code></pre></div>
 
 <p>Now that JShell is open, we can import all of the necessary functions.</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.io.FileInputStream</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.io.InputStreamReader</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.util.zip.GZIPInputStream</span><span class="o">;</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">java.io.File</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.io.FileInputStream</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.io.InputStreamReader</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.zip.GZIPInputStream</span><span class="p">;</span>
 <span class="kn">import</span> <span class="nn">htsjdk.samtools.fastq.FastqRecord</span>
 <span class="kn">import</span> <span class="nn">htsjdk.samtools.fastq.FastqReader</span>
-</pre></div>
+</code></pre></div>
 
-
-<div class="highlight"><pre><span></span><span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&quot;R1.fastq.gz&quot;</span><span class="o">)</span>
-<span class="n">FileInputStream</span> <span class="n">fis</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileInputStream</span><span class="o">(</span><span class="n">file</span><span class="o">)</span>
-<span class="n">GZIPInputStream</span> <span class="n">gis</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GZIPInputStream</span><span class="o">(</span><span class="n">fis</span><span class="o">)</span>
-<span class="n">InputStreamReader</span> <span class="n">isr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">InputStreamReader</span><span class="o">(</span><span class="n">gis</span><span class="o">)</span>
-<span class="n">BufferedReader</span> <span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedReader</span><span class="o">(</span><span class="n">isr</span><span class="o">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="p">(</span><span class="s">&quot;R1.fastq.gz&quot;</span><span class="p">)</span>
+<span class="n">FileInputStream</span> <span class="n">fis</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileInputStream</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+<span class="n">GZIPInputStream</span> <span class="n">gis</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GZIPInputStream</span><span class="p">(</span><span class="n">fis</span><span class="p">)</span>
+<span class="n">InputStreamReader</span> <span class="n">isr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">InputStreamReader</span><span class="p">(</span><span class="n">gis</span><span class="p">)</span>
+<span class="n">BufferedReader</span> <span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedReader</span><span class="p">(</span><span class="n">isr</span><span class="p">)</span>
 <span class="c1">// I&#39;m adding file here (which is optional) so we can see the file name</span>
-<span class="n">FastqReader</span> <span class="n">fr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FastqReader</span><span class="o">(</span><span class="n">file</span><span class="o">,</span><span class="n">br</span><span class="o">)</span>
-</pre></div>
+<span class="n">FastqReader</span> <span class="n">fr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FastqReader</span><span class="p">(</span><span class="n">file</span><span class="p">,</span><span class="n">br</span><span class="p">)</span>
+</code></pre></div>
 
-
-<div class="highlight"><pre><span></span><span class="n">FastqRecord</span> <span class="n">record</span> <span class="o">=</span> <span class="n">fr</span><span class="o">.</span><span class="na">next</span><span class="o">()</span>
-<span class="n">record</span><span class="o">.</span><span class="na">getReadLength</span><span class="o">()</span>
-<span class="n">record</span><span class="o">.</span><span class="na">getBaseQualities</span><span class="o">()</span>
-<span class="n">Spliterator</span><span class="o">&lt;</span><span class="n">FastqRecord</span><span class="o">&gt;</span> <span class="n">spliterator</span> <span class="o">=</span> <span class="n">fr</span><span class="o">.</span><span class="na">spliterator</span><span class="o">()</span>
+<div class="highlight"><pre><span></span><code><span class="n">FastqRecord</span> <span class="n">record</span> <span class="o">=</span> <span class="n">fr</span><span class="p">.</span><span class="na">next</span><span class="p">()</span>
+<span class="n">record</span><span class="p">.</span><span class="na">getReadLength</span><span class="p">()</span>
+<span class="n">record</span><span class="p">.</span><span class="na">getBaseQualities</span><span class="p">()</span>
+<span class="n">Spliterator</span><span class="o">&lt;</span><span class="n">FastqRecord</span><span class="o">&gt;</span> <span class="n">spliterator</span> <span class="o">=</span> <span class="n">fr</span><span class="p">.</span><span class="na">spliterator</span><span class="p">()</span>
 <span class="c1">// Note: You can only iterate over a stream once, </span>
 <span class="c1">//       so typically you won&#39;t save the stream to a variable</span>
-<span class="n">Stream</span><span class="o">&lt;</span><span class="n">FastqRecord</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">StreamSupport</span><span class="o">.</span><span class="na">stream</span><span class="o">(</span><span class="n">spliterator</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span>
-<span class="n">stream</span><span class="o">.</span><span class="na">isParallel</span><span class="o">()</span>
+<span class="n">Stream</span><span class="o">&lt;</span><span class="n">FastqRecord</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">StreamSupport</span><span class="p">.</span><span class="na">stream</span><span class="p">(</span><span class="n">spliterator</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+<span class="n">stream</span><span class="p">.</span><span class="na">isParallel</span><span class="p">()</span>
 <span class="c1">// Just want to print the </span>
 <span class="c1">//stream.forEach(n -&gt; System.out.println(n.getBaseQualities()))</span>
-<span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="n">groupingBy</span><span class="o">(</span><span class="n">FastqRecord</span><span class="o">::</span><span class="n">getReadString</span><span class="o">,</span> <span class="n">counting</span><span class="o">()));</span>
+<span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">Long</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="n">stream</span><span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">groupingBy</span><span class="p">(</span><span class="n">FastqRecord</span><span class="p">::</span><span class="n">getReadString</span><span class="p">,</span> <span class="n">counting</span><span class="p">()));</span>
 <span class="c1">// Now, we have all of our reads counted</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Now we get the path to the FASTA file and generate FASTA object using a FactoryBuilder (A specialized Java class for generating objects).</p>
-<div class="highlight"><pre><span></span><span class="c1">// Get the path to our file</span>
-<span class="n">Path</span> <span class="n">path</span> <span class="o">=</span> <span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;big.fasta&quot;</span><span class="o">)</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// Get the path to our file</span>
+<span class="n">Path</span> <span class="n">path</span> <span class="o">=</span> <span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;big.fasta&quot;</span><span class="p">)</span>
 
 <span class="c1">// Generate a FASTA object</span>
-<span class="n">ReferenceSequenceFile</span> <span class="n">fasta</span> <span class="o">=</span> <span class="n">ReferenceSequenceFileFactory</span><span class="o">.</span><span class="na">getReferenceSequenceFile</span><span class="o">(</span><span class="n">path</span><span class="o">)</span>
+<span class="n">ReferenceSequenceFile</span> <span class="n">fasta</span> <span class="o">=</span> <span class="n">ReferenceSequenceFileFactory</span><span class="p">.</span><span class="na">getReferenceSequenceFile</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 
 <span class="c1">// Index our FASTA file</span>
-<span class="n">FastaSequenceIndex</span> <span class="n">fsi</span> <span class="o">=</span> <span class="n">FastaSequenceIndexCreator</span><span class="o">.</span><span class="na">buildFromFasta</span><span class="o">(</span><span class="n">path</span><span class="o">)</span>
-</pre></div>
-
+<span class="n">FastaSequenceIndex</span> <span class="n">fsi</span> <span class="o">=</span> <span class="n">FastaSequenceIndexCreator</span><span class="p">.</span><span class="na">buildFromFasta</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</code></pre></div>
 
 <p>The FASTA file is now indexed and we can readily check some specific metrics for this FASTA.</p>
-<div class="highlight"><pre><span></span><span class="c1">// Determine the number of sequences in our file</span>
-<span class="n">fsi</span><span class="o">.</span><span class="na">size</span><span class="o">()</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// Determine the number of sequences in our file</span>
+<span class="n">fsi</span><span class="p">.</span><span class="na">size</span><span class="p">()</span>
 
-<span class="err">#</span> <span class="n">Get</span> <span class="n">sequence</span><span class="o">-</span><span class="n">specific</span> <span class="n">information</span>
-<span class="n">fsi</span><span class="o">.</span><span class="na">getIndexEntry</span><span class="o">(</span><span class="s">&quot;sequence_5&quot;</span><span class="o">)</span>
-   <span class="err">#</span> <span class="n">contig</span> <span class="n">sequence_5</span><span class="o">;</span> <span class="n">location</span> <span class="mi">5152</span><span class="o">;</span> <span class="n">size</span> <span class="mi">999</span><span class="o">;</span> <span class="n">basesPerLine</span> <span class="mi">60</span><span class="o">;</span> <span class="n">bytesPerLine</span> <span class="mi">61</span>
+<span class="c1">// Get sequence-specific information</span>
+<span class="n">fsi</span><span class="p">.</span><span class="na">getIndexEntry</span><span class="p">(</span><span class="s">&quot;sequence_5&quot;</span><span class="p">)</span>
+   <span class="err">#</span> <span class="n">contig</span> <span class="n">sequence_5</span><span class="p">;</span> <span class="n">location</span> <span class="mi">5152</span><span class="p">;</span> <span class="n">size</span> <span class="mi">999</span><span class="p">;</span> <span class="n">basesPerLine</span> <span class="mi">60</span><span class="p">;</span> <span class="n">bytesPerLine</span> <span class="mi">61</span>
 
-<span class="err">#</span> <span class="n">Notice</span><span class="o">,</span> <span class="n">our</span> <span class="n">FASTA</span> <span class="n">isn</span><span class="err">&#39;</span><span class="n">t</span> <span class="n">recognized</span> <span class="n">as</span> <span class="n">indexed</span>
-<span class="n">fasta</span><span class="o">.</span><span class="na">isIndexed</span><span class="o">()</span>
+<span class="c1">// Notice, our FASTA isn&#39;t recognized as indexed</span>
+<span class="n">fasta</span><span class="p">.</span><span class="na">isIndexed</span><span class="p">()</span>
    <span class="err">#</span> <span class="kc">false</span>
 
-<span class="err">#</span> <span class="n">Write</span> <span class="n">our</span> <span class="n">index</span> 
-<span class="n">fsi</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;big.fa.fai&quot;</span><span class="o">))</span>
+<span class="c1">// Write our index </span>
+<span class="n">fsi</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;big.fa.fai&quot;</span><span class="p">))</span>
 
-<span class="err">#</span> <span class="n">Re</span><span class="o">-</span><span class="n">open</span> <span class="n">the</span> <span class="n">FASTA</span> <span class="n">using</span> <span class="k">this</span> <span class="n">index</span>
-<span class="n">fasta</span> <span class="o">=</span> <span class="n">ReferenceSequenceFileFactory</span><span class="o">.</span><span class="na">getReferenceSequenceFile</span><span class="o">(</span><span class="n">path</span><span class="o">)</span>
+<span class="c1">// Re-open the FASTA using this index</span>
+<span class="n">fasta</span> <span class="o">=</span> <span class="n">ReferenceSequenceFileFactory</span><span class="p">.</span><span class="na">getReferenceSequenceFile</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 
-<span class="err">#</span> <span class="n">Notice</span><span class="o">,</span> <span class="n">our</span> <span class="n">FASTA</span> <span class="n">is</span> <span class="n">now</span> <span class="n">indexed</span>
-<span class="n">fasta</span><span class="o">.</span><span class="na">isIndexed</span><span class="o">()</span>
+<span class="c1">// Notice, our FASTA is now indexed</span>
+<span class="n">fasta</span><span class="p">.</span><span class="na">isIndexed</span><span class="p">()</span>
     <span class="kc">true</span>
 
-<span class="err">#</span> <span class="n">You</span> <span class="n">may</span> <span class="n">want</span> <span class="n">to</span> <span class="n">check</span> <span class="n">the</span> <span class="n">first</span> <span class="n">sequnce</span>
-<span class="n">ReferenceSequence</span> <span class="n">rs</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="na">nextSequence</span><span class="o">()</span>
+<span class="c1">// You may want to check the first sequnce</span>
+<span class="n">ReferenceSequence</span> <span class="n">rs</span> <span class="o">=</span> <span class="n">fasta</span><span class="p">.</span><span class="na">nextSequence</span><span class="p">()</span>
 
-<span class="err">#</span> <span class="n">Look</span> <span class="n">at</span> <span class="n">its</span> <span class="n">name</span>
-<span class="n">rs</span><span class="o">.</span><span class="na">getName</span><span class="o">()</span>
+<span class="c1">// Look at its name</span>
+<span class="n">rs</span><span class="p">.</span><span class="na">getName</span><span class="p">()</span>
 
-<span class="err">#</span> <span class="n">Look</span> <span class="n">at</span> <span class="n">the</span> <span class="n">sequence</span>
-<span class="n">rs</span><span class="o">.</span><span class="na">getBaseString</span><span class="o">()</span>
-</pre></div>
-
-
-        
+<span class="c1">// Look at the sequence</span>
+<span class="n">rs</span><span class="p">.</span><span class="na">getBaseString</span><span class="p">()</span>
+</code></pre></div>
     </div>
-        <!-- /Content --> 
+  </article>
+    </div>
+  </div>
 
-        <!-- Footer -->
-        <div class="footer gradient-2">
-            <div class="container footer-container ">
-                <div class="row">
-                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
-                        <div class="footer-title"></div>
-                        <ul class="list-unstyled">
-                        </ul>
-                    </div>
-                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
-                    </div>
-                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
-                        <div class="footer-title"></div>
-                        <ul class="list-unstyled">
-                            <li><a href="about-me.html" target="_blank">about-me</a></li>
-                            <li><a href="https://github.com/jlboat" target="_blank">gitHub</a></li>
-                        </ul>
-                    </div> 
-                    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                        <p class="pull-right text-right">
-                            <small><em>Proudly powered by <a href="http://docs.getpelican.com/" target="_blank">pelican</a></em></small><br/>
-                            <small><em>Theme and code by <a href="https://github.com/molivier" target="_blank">molivier</a></em></small><br/>
-                            <small></small>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /Footer -->
-    </body>
+  <footer class="footer">
+    <div class="container">
+<div class="row">
+  <ul class="col-sm-6 list-inline">
+      <li class="list-inline-item"><a href="./authors.html">Authors</a></li>
+    <li class="list-inline-item"><a href="./archives.html">Archives</a></li>
+    <li class="list-inline-item"><a href="./categories.html">Categories</a></li>
+      <li class="list-inline-item"><a href="./tags.html">Tags</a></li>
+  </ul>
+  <p class="col-sm-6 text-sm-right text-muted">
+    Generated by <a href="https://github.com/getpelican/pelican" target="_blank">Pelican</a>
+    / <a href="https://github.com/nairobilug/pelican-alchemy" target="_blank">&#x2728;</a>
+  </p>
+</div>    </div>
+  </footer>
+
+</body>
+
 </html>

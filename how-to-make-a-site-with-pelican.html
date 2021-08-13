@@ -1,143 +1,132 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="I&#39;ve tried generating static sites on my own before. I&#39;ve even tried it with pelican and jekyll. And even given all of the great documentation to get started, it still felt a bit overwhelming. So,...">
-        <meta name="keywords" content="">
-        <link rel="icon" href="./favicon.ico">
 
-        <title>How-to: Make a Site with Pelican - Computational approaches to biological problems</title>
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <!-- Stylesheets -->
-        <link href="./theme/css/bootstrap.min.css" rel="stylesheet">
-        <link href="./theme/css/fonts.css" rel="stylesheet">
-        <link href="./theme/css/nest.css" rel="stylesheet">
-        <link href="./theme/css/pygment.css" rel="stylesheet">
-        <!-- /Stylesheets -->
-
-        <!-- RSS Feeds -->
-        <!-- /RSS Feeds -->
-
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
+  <title>  How-to: Make a Site with Pelican | Computational Approaches to Biological Problems
+</title>
+  <link rel="canonical" href="./how-to-make-a-site-with-pelican.html">
 
 
+  <link rel="stylesheet" href="./theme/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./theme/css/fontawesome.min.css">
+  <link rel="stylesheet" href="./theme/css/pygments/default.min.css">
+  <link rel="stylesheet" href="./theme/css/theme.css">
 
-    </head>
+  
+  <meta name="description" content="I've tried generating static sites on my own before. I've even tried it with pelican and jekyll. And even given all of the great documentation to get started, it still felt a bit overwhelming. So, after yet another attempt to get something that looked like a manageable, visually appealing site …">
 
-    <body>
 
-        <!-- Header -->
-    <div class="header-container gradient">
+</head>
 
-            <!-- Static navbar -->
-            <div class="container">
-                <div class="header-nav">
-                    <div class="header-logo">
-                        <a class="pull-left" href="./"><img class="mr20" src="./images/boat-logo_small.jpeg" alt="logo">Computational approaches to biological problems</a>
-                    </div>
-                    <div class="nav pull-right">
-                                <a href="./">Home</a>
-                                <a href="./about-me.html">About</a>
-                                <a href="https://github.com/jlboat">GitHub</a>
-                                <a href="https://scholar.google.com/citations?hl=en&user=q5G2bJEAAAAJ&view_op=list_works&gmla=AJsN-F4gfKvkjBIT6Nv8Xy97IIUHuhFi9jF8x5ntZveyPGo_xO2ws-_5NjCw-_9z9CD2mWJnlbL1DeMd-0l-IUNYPsQ1NR4wu8s_l6YjZYlsb9mTQ1d8TX8">Pubs</a>
-                    </div>
-                </div>
-            </div>
-            <!-- /Static navbar -->
-
-            <!-- Header -->
-    <!-- Header -->
-    <div class="container header-wrapper">
-        <div class="row">
-              <div class="col-lg-12">
-                  <div class="header-content">
-                      <h1 class="header-title">How-to: Make a Site with Pelican</h1>
-                      <p class="header-date">By <a href="./author/j-lucas-boatwright.html">J. Lucas Boatwright</a>, Mon 27 August 2018, in category <a href="./category/misc.html">Misc</a></p>
-                      <div class="header-underline"></div>
-                      <div class="clearfix"></div>
-                      <p class="pull-right header-tags">
-                          <span class="glyphicon glyphicon-tags mr5" aria-hidden="true"></span>
-                      </p>
-                  </div>
-              </div>
-        </div>
+<body>
+  <header class="header">
+    <div class="container">
+<div class="row">
+    <div class="col-sm-4">
+      <a href="./">
+        <img class="img-fluid rounded" src=./images/LucasBoatwrightHeadShot-161x215.jpeg alt="Computational Approaches to Biological Problems">
+      </a>
     </div>
-    <!-- /Header -->
-            <!-- /Header -->
+  <div class="col-sm-8">
+    <h1 class="title"><a href="./">Computational Approaches to Biological Problems</a></h1>
+      <p class="text-muted">and other biological inklings</p>
+      <ul class="list-inline">
+          <li class="list-inline-item"><a href="./index.html">Home</a></li>
+          <li class="list-inline-item"><a href="./archives.html">posts</a></li>
+          <li class="list-inline-item"><a href="https://github.com/jlboat">GitHub</a></li>
+          <li class="list-inline-item"><a href="https://scholar.google.com/citations?hl=en&user=q5G2bJEAAAAJ&view_op=list_works&gmla=AJsN-F4gfKvkjBIT6Nv8Xy97IIUHuhFi9jF8x5ntZveyPGo_xO2ws-_5NjCw-_9z9CD2mWJnlbL1DeMd-0l-IUNYPsQ1NR4wu8s_l6YjZYlsb9mTQ1d8TX8">Pubs</a></li>
+              <li class="list-inline-item text-muted">|</li>
+            <li class="list-inline-item"><a href="./pages/about-me.html">About me</a></li>
+      </ul>
+  </div>
+</div>    </div>
+  </header>
 
-        </div>
-        <!-- /Header -->
-
-
-        <!-- Content -->
-    <div class="container content">
-        <p>I've tried generating static sites on my own before. I've even tried it with pelican and jekyll. And even given all of the great documentation to get started, it still felt a bit overwhelming. So, after yet another attempt to get something that looked like a manageable, visually appealing site, it seems I might actually have something worth showing.</p>
+  <div class="main">
+    <div class="container">
+      <h1>  How-to: Make a Site with Pelican
+</h1>
+      <hr>
+  <article class="article">
+    <header>
+      <ul class="list-inline">
+        <li class="list-inline-item text-muted" title="2018-08-27T00:00:00-05:00">
+          <i class="fas fa-clock"></i>
+          Mon 27 August 2018
+        </li>
+        <li class="list-inline-item">
+          <i class="fas fa-folder-open"></i>
+          <a href="./category/how-to.html">How-to</a>
+        </li>
+          <li class="list-inline-item">
+            <i class="fas fa-user"></i>
+              <a href="./author/j-lucas-boatwright.html">J. Lucas Boatwright</a>          </li>
+          <li class="list-inline-item">
+            <i class="fas fa-tag"></i>
+              <a href="./tag/html.html">#html</a>,               <a href="./tag/education.html">#education</a>,               <a href="./tag/python.html">#python</a>          </li>
+      </ul>
+    </header>
+    <div class="content">
+      <p>I've tried generating static sites on my own before. I've even tried it with pelican and jekyll. And even given all of the great documentation to get started, it still felt a bit overwhelming. So, after yet another attempt to get something that looked like a manageable, visually appealing site, it seems I might actually have something worth showing.</p>
 <p>So, here, I will describe how I did it in the off chance that it may be helpful to someone else also.</p>
 <p>To get started, I went straight to the <a href="http://docs.getpelican.com/en/stable/quickstart.html">Pelican quickstart tab</a>. Then, I opened the terminal to install pelican. Now, normally one should follow the installation guide on the documentation page. However, as I do all of my python work through my local <a href="https://www.anaconda.com/download/#linux">Anaconda distribution</a>, I had to figure out how to get it installed on my Ubuntu virtual machine.</p>
 <p>Short answer:</p>
-<div class="highlight"><pre><span></span>conda install -c conda-forge pelican markdown
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>conda install -c conda-forge pelican markdown
+</code></pre></div>
 
 <p>Next, I actually followed the quickstart directions</p>
-<div class="highlight"><pre><span></span>mkdir jlboat.github.io   <span class="c1"># name of my soon-to-be static site directory</span>
+<div class="highlight"><pre><span></span><code>mkdir jlboat.github.io   <span class="c1"># name of my soon-to-be static site directory</span>
 <span class="nb">cd</span> jlboat.github.io
 
 pelican-quickstart
-</pre></div>
-
+</code></pre></div>
 
 <p>Conveniently, pelican gets you started by asking simple questions so it can auto-generate the basics of your site.</p>
-<div class="highlight"><pre><span></span>pelican-quickstart
-Welcome to pelican-quickstart v3.7.1.
+<div class="highlight"><pre><span></span><code><span class="n">pelican</span><span class="o">-</span><span class="n">quickstart</span><span class="w"></span>
+<span class="n">Welcome</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">pelican</span><span class="o">-</span><span class="n">quickstart</span><span class="w"> </span><span class="n">v3</span><span class="mf">.7.1</span><span class="p">.</span><span class="w"></span>
 
-This script will help you create a new Pelican-based website.
+<span class="n">This</span><span class="w"> </span><span class="n">script</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">help</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Pelican</span><span class="o">-</span><span class="n">based</span><span class="w"> </span><span class="n">website</span><span class="p">.</span><span class="w"></span>
 
-Please answer the following questions so this script can generate the files
-needed by Pelican.
+<span class="n">Please</span><span class="w"> </span><span class="n">answer</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">following</span><span class="w"> </span><span class="n">questions</span><span class="w"> </span><span class="n">so</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">script</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">generate</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">files</span><span class="w"></span>
+<span class="n">needed</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">Pelican</span><span class="p">.</span><span class="w"></span>
 
 
-&gt; Where do you want to create your new web site? [.] 
-&gt; What will be the title of this web site? Computational approaches to biological problems
-&gt; Who will be the author of this web site? J. Lucas Boatwright
-&gt; What will be the default language of this web site? [en] 
-&gt; Do you want to specify a URL prefix? e.g., http://example.com   (Y/n) 
-&gt; What is your URL prefix? (see above example; no trailing slash) https://github.com/jlboat 
-&gt; Do you want to enable article pagination? (Y/n) 
-&gt; How many articles per page do you want? [10] 
-&gt; What is your time zone? [Europe/Paris] EST
-&gt; Do you want to generate a Fabfile/Makefile to automate generation and publishing? (Y/n) 
-&gt; Do you want an auto-reload &amp; simpleHTTP script to assist with theme and site development? (Y/n) 
-&gt; Do you want to upload your website using FTP? (y/N) 
-&gt; Do you want to upload your website using SSH? (y/N) 
-&gt; Do you want to upload your website using Dropbox? (y/N) 
-&gt; Do you want to upload your website using S3? (y/N) 
-&gt; Do you want to upload your website using Rackspace Cloud Files? (y/N)
-&gt; Do you want to upload your website using GitHub Pages? (y/N) y
-&gt; Is this your personal page (username.github.io)? (y/N) y
-Done. Your new project is available at /home/lucas/Documents/Projects/Personal/jlboat.github.io
-</pre></div>
-
+<span class="o">&gt;</span><span class="w"> </span><span class="k">Where</span><span class="w"> </span><span class="n">do</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">want</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">web</span><span class="w"> </span><span class="n">site</span><span class="vm">?</span><span class="w"> </span><span class="o">[</span><span class="n">.</span><span class="o">]</span><span class="w"> </span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">What</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">web</span><span class="w"> </span><span class="n">site</span><span class="vm">?</span><span class="w"> </span><span class="n">Computational</span><span class="w"> </span><span class="n">approaches</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">biological</span><span class="w"> </span><span class="n">problems</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">Who</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">author</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">web</span><span class="w"> </span><span class="n">site</span><span class="vm">?</span><span class="w"> </span><span class="n">J</span><span class="p">.</span><span class="w"> </span><span class="n">Lucas</span><span class="w"> </span><span class="n">Boatwright</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">What</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="k">language</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">web</span><span class="w"> </span><span class="n">site</span><span class="vm">?</span><span class="w"> </span><span class="o">[</span><span class="n">en</span><span class="o">]</span><span class="w"> </span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">Do</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">want</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">specify</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="k">prefix</span><span class="vm">?</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">g</span><span class="p">.,</span><span class="w"> </span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="w">   </span><span class="p">(</span><span class="n">Y</span><span class="o">/</span><span class="n">n</span><span class="p">)</span><span class="w"> </span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">What</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="k">prefix</span><span class="vm">?</span><span class="w"> </span><span class="p">(</span><span class="n">see</span><span class="w"> </span><span class="n">above</span><span class="w"> </span><span class="n">example</span><span class="p">;</span><span class="w"> </span><span class="k">no</span><span class="w"> </span><span class="k">trailing</span><span class="w"> </span><span class="n">slash</span><span class="p">)</span><span class="w"> </span><span class="nl">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">jlboat</span><span class="w"> </span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">Do</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">want</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">enable</span><span class="w"> </span><span class="n">article</span><span class="w"> </span><span class="n">pagination</span><span class="vm">?</span><span class="w"> </span><span class="p">(</span><span class="n">Y</span><span class="o">/</span><span class="n">n</span><span class="p">)</span><span class="w"> </span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">How</span><span class="w"> </span><span class="n">many</span><span class="w"> </span><span class="n">articles</span><span class="w"> </span><span class="n">per</span><span class="w"> </span><span class="n">page</span><span class="w"> </span><span class="n">do</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">want</span><span class="vm">?</span><span class="w"> </span><span class="o">[</span><span class="n">10</span><span class="o">]</span><span class="w"> </span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">What</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="nc">time</span><span class="w"> </span><span class="k">zone</span><span class="vm">?</span><span class="w"> </span><span class="o">[</span><span class="n">Europe/Paris</span><span class="o">]</span><span class="w"> </span><span class="n">EST</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">Do</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">want</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">generate</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">Fabfile</span><span class="o">/</span><span class="n">Makefile</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">automate</span><span class="w"> </span><span class="n">generation</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">publishing</span><span class="vm">?</span><span class="w"> </span><span class="p">(</span><span class="n">Y</span><span class="o">/</span><span class="n">n</span><span class="p">)</span><span class="w"> </span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">Do</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">want</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">auto</span><span class="o">-</span><span class="n">reload</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">simpleHTTP</span><span class="w"> </span><span class="n">script</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">assist</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">theme</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">site</span><span class="w"> </span><span class="n">development</span><span class="vm">?</span><span class="w"> </span><span class="p">(</span><span class="n">Y</span><span class="o">/</span><span class="n">n</span><span class="p">)</span><span class="w"> </span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">Do</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">want</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">upload</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">website</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">FTP</span><span class="vm">?</span><span class="w"> </span><span class="p">(</span><span class="n">y</span><span class="o">/</span><span class="n">N</span><span class="p">)</span><span class="w"> </span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">Do</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">want</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">upload</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">website</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">SSH</span><span class="vm">?</span><span class="w"> </span><span class="p">(</span><span class="n">y</span><span class="o">/</span><span class="n">N</span><span class="p">)</span><span class="w"> </span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">Do</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">want</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">upload</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">website</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">Dropbox</span><span class="vm">?</span><span class="w"> </span><span class="p">(</span><span class="n">y</span><span class="o">/</span><span class="n">N</span><span class="p">)</span><span class="w"> </span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">Do</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">want</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">upload</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">website</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">S3</span><span class="vm">?</span><span class="w"> </span><span class="p">(</span><span class="n">y</span><span class="o">/</span><span class="n">N</span><span class="p">)</span><span class="w"> </span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">Do</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">want</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">upload</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">website</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">Rackspace</span><span class="w"> </span><span class="n">Cloud</span><span class="w"> </span><span class="n">Files</span><span class="vm">?</span><span class="w"> </span><span class="p">(</span><span class="n">y</span><span class="o">/</span><span class="n">N</span><span class="p">)</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">Do</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">want</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">upload</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">website</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">GitHub</span><span class="w"> </span><span class="n">Pages</span><span class="vm">?</span><span class="w"> </span><span class="p">(</span><span class="n">y</span><span class="o">/</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="n">y</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">Is</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">personal</span><span class="w"> </span><span class="n">page</span><span class="w"> </span><span class="p">(</span><span class="n">username</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">io</span><span class="p">)</span><span class="vm">?</span><span class="w"> </span><span class="p">(</span><span class="n">y</span><span class="o">/</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="n">y</span><span class="w"></span>
+<span class="n">Done</span><span class="p">.</span><span class="w"> </span><span class="n">Your</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">project</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">available</span><span class="w"> </span><span class="k">at</span><span class="w"> </span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">lucas</span><span class="o">/</span><span class="n">Documents</span><span class="o">/</span><span class="n">Projects</span><span class="o">/</span><span class="n">Personal</span><span class="o">/</span><span class="n">jlboat</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">io</span><span class="w"></span>
+</code></pre></div>
 
 <p>Once you get the basic setup ready for your pelican site, you're going to want to add a theme (unless you're okay with an ugly HTML page without any CSS to make it pretty).</p>
 <p>To do that, either download or clone the pelican-themes repository and install a theme you like (you may find a gallery <a href="http://www.pelicanthemes.com/">here</a> or some of the themes have PNG examples in their directories)</p>
-<div class="highlight"><pre><span></span>git clone --recursive https://github.com/getpelican/pelican-themes ~/pelican-themes
+<div class="highlight"><pre><span></span><code>git clone --recursive https://github.com/getpelican/pelican-themes ~/pelican-themes
 pelican-themes --install /home/lucas/pelican-themes/nest
-</pre></div>
-
+</code></pre></div>
 
 <p>Now, you need to add the theme you like to the pelicanconf.py as well.</p>
-<div class="highlight"><pre><span></span>vim pelicanconf.py  <span class="c1"># or your editor of choice</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code>vim pelicanconf.py  <span class="c1"># or your editor of choice</span>
+</code></pre></div>
 
-
-<div class="highlight"><pre><span></span><span class="c1">## INSIDE THE EDITOR</span>
+<div class="highlight"><pre><span></span><code><span class="c1">## INSIDE THE EDITOR</span>
 <span class="c1">#!/usr/bin/env python</span>
 <span class="c1"># -*- coding: utf-8 -*- #</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
@@ -146,55 +135,39 @@ pelican-themes --install /home/lucas/pelican-themes/nest
 <span class="n">SITENAME</span> <span class="o">=</span> <span class="s1">&#39;Computational approaches to biological problems&#39;</span>
 <span class="n">SITEURL</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
 <span class="n">THEME</span> <span class="o">=</span> <span class="s1">&#39;/home/lucas/pelican-themes/nest&#39;</span>                 <span class="c1"># &lt;-- Edit here</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>For examining the state of the static site locally (before pushing to GitHub), I had to uncomment the <strong>last line</strong> in the pelicanconf.py file.</p>
-<div class="highlight"><pre><span></span><span class="c1"># Uncomment following line if you want document-relative URLs when developing</span>
-<span class="n">RELATIVE_URLS</span> <span class="o">=</span> <span class="bp">True</span>                                      <span class="c1"># &lt;-- Edit here</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="c1"># Uncomment following line if you want document-relative URLs when developing</span>
+<span class="n">RELATIVE_URLS</span> <span class="o">=</span> <span class="kc">True</span>                                      <span class="c1"># &lt;-- Edit here</span>
+</code></pre></div>
 
 <p>Then, it's as simple as:</p>
-<div class="highlight"><pre><span></span>make html
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>make html
+</code></pre></div>
 
 <p>This should be enough to get you started. I further recommend going to the theme's GitHub site (for example: <a href="https://github.com/molivier/nest">nest</a>) to see what the default configuration settings are, and how you may further customize your theme.</p>
-
-
-        
     </div>
-        <!-- /Content --> 
+  </article>
+    </div>
+  </div>
 
-        <!-- Footer -->
-        <div class="footer gradient-2">
-            <div class="container footer-container ">
-                <div class="row">
-                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
-                        <div class="footer-title"></div>
-                        <ul class="list-unstyled">
-                        </ul>
-                    </div>
-                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
-                    </div>
-                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
-                        <div class="footer-title"></div>
-                        <ul class="list-unstyled">
-                            <li><a href="about-me.html" target="_blank">about-me</a></li>
-                            <li><a href="https://github.com/jlboat" target="_blank">gitHub</a></li>
-                        </ul>
-                    </div> 
-                    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                        <p class="pull-right text-right">
-                            <small><em>Proudly powered by <a href="http://docs.getpelican.com/" target="_blank">pelican</a></em></small><br/>
-                            <small><em>Theme and code by <a href="https://github.com/molivier" target="_blank">molivier</a></em></small><br/>
-                            <small></small>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /Footer -->
-    </body>
+  <footer class="footer">
+    <div class="container">
+<div class="row">
+  <ul class="col-sm-6 list-inline">
+      <li class="list-inline-item"><a href="./authors.html">Authors</a></li>
+    <li class="list-inline-item"><a href="./archives.html">Archives</a></li>
+    <li class="list-inline-item"><a href="./categories.html">Categories</a></li>
+      <li class="list-inline-item"><a href="./tags.html">Tags</a></li>
+  </ul>
+  <p class="col-sm-6 text-sm-right text-muted">
+    Generated by <a href="https://github.com/getpelican/pelican" target="_blank">Pelican</a>
+    / <a href="https://github.com/nairobilug/pelican-alchemy" target="_blank">&#x2728;</a>
+  </p>
+</div>    </div>
+  </footer>
+
+</body>
+
 </html>
